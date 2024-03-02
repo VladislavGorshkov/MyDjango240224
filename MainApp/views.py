@@ -41,7 +41,7 @@ def get_item(request,item_id:int):
     context = {"goods":ITEMS,
                 "id":item_id}
     return render(request,'item.html',context)
-    return render(request,'item.html',context)
+
     #         text = f"""<p><b>name={t["name"]}, quantity={t["quantity"]}</b></p>
     #                   <p><a href ="/items"> Назад к списку товаров</a></p>"""
 
@@ -58,9 +58,8 @@ def get_items(request):
     # text+='</ol>'
     # return HttpResponse(text)
     context={"goods":ITEMS}
-    #text = f'{context["goods"]}'
     return render(request,'items.html',context)
-    #return HttpResponse(text)
+
 
  
 
