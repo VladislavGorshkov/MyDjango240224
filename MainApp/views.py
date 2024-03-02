@@ -46,7 +46,7 @@ def about(request):
 def get_item(request,item_id:int):
     # """По указанному ID вернуть имя и количество"""
     items = Item.objects.all()
-    item = next((item for item in items if item.id==item_id),None)
+    item = Item.objects.get(id = item_id )# next((item for item in items if item.id==item_id),None)
     if item is not None:
         context = {"item":item}
         return render(request,'item.html',context)
