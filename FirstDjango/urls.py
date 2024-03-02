@@ -19,8 +19,8 @@ from django.contrib import admin
 from django.urls import path
 
 urlpatterns = [
-    path('',views.home),
+    path('',views.home), #корневой урл
     path('about',views.about),
-    path("items/<int:id>/", views.fitems),
-    path("items", views.fitems)
+    path("item/<int:item_id>/", views.get_item),
+    path("items", views.get_items)
 ]

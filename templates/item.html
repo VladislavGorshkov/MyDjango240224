@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о товаре</title>
+</head>
+<body>
+    {%for item in goods%}
+       {% if item.quantity==0 %} 
+            <h1>Товар {{item["name"}} отсутствует</h1>
+        {%elif item.id == id%} 
+    
+           <h1>Товар: {{name}}</h1>
+           <p>Количество {{quantity}}</p>
+           <a href="/../">Домой </a><br>
+     
+        {% endif %} 
+    <a href="/../items">К списку товаров</a>
+</body>
+</html>
