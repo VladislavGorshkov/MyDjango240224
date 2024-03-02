@@ -6,19 +6,20 @@
     <title>Информация о товаре</title>
 </head>
 <body>
-    {%for item in goods%}
-       {% if item.quantity == 0 %}
+    <header>
+        <a href="/../">Домой / </a>
+        <a href="/../items">Cписок товаров /</a>
+        <a href="/../about">About</a>
+    </header>
+     {% if item.quantity == 0 %}
             <h1>Товар {{item.name}} отсутствует</h1>  
-        {%elif item.id == id%}  
+        {%else%}  
     
            <h1>Товар: {{item.name}}</h1>
            <p>Количество {{item.quantity}}</p>
        
         {% endif %}  
-        {%endfor%}
     
-        <a href="/../">Домой </a><br>
-        <a href="/../items">К списку товаров</a>
-        <a href="/../about">About</a>
+
     </body>
 </html>

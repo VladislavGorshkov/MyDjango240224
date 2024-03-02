@@ -27,25 +27,30 @@ ITEMS = [
 
 def about(request):
 
-    text=f"""<p>Имя:<strong>{author["Имя"]} </strong></p>
+    text=f"""
+    <header>
+        <a href="/"> Домой / <a>
+        <a href="/items"> Список товаров / <a>
+        <a href="/about">About</a>
+    </header>    
+    <p>Имя:<strong>{author["Имя"]} </strong></p>
               <p>Отчество:<strong>{author["Отчество"]} </strong></p>
               <p>Фамилия:<strong>{author["Фамилия"]} </strong></p>
               <p>Телефон:<strong>{author["телефон"]} </strong></p>
               <p>e-mail:<strong>{author["email"]} </strong></p>
           
     
-    <a href="/">Домой </a><br>
-    <a href="/items">К списку товаров</a>
-    <a href="/about">About</a>
+
     """
     return HttpResponse(text)
 
 def get_item(request,item_id:int):
     # """По указанному ID вернуть имя и количество"""
-    context = {"goods":ITEMS,
-                "id":item_id}
-    return render(request,'item.html',context)
-
+    item = next((item for item in ITEMS if item['id']==item_id),None)
+    if item is not None:
+        context = {"item":item}
+        return render(request,'item.html',context)
+    return HttpResponseNotFound(f'Товар itemid={item_id} не найден')
 
 def get_items(request):
     # """Возвращаем список товаров"""
