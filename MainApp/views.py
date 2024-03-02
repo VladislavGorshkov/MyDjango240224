@@ -39,8 +39,6 @@ def about(request):
               <p>Телефон:<strong>{author["телефон"]} </strong></p>
               <p>e-mail:<strong>{author["email"]} </strong></p>
           
-    
-
     """
     return HttpResponse(text)
 
