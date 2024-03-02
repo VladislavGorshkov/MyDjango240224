@@ -33,12 +33,17 @@ def about(request):
     """
     return HttpResponse(text)
 
-def fnames(request,id):
-    text = "<b>Нет такого товара</b>"
+def fitems(request,id=0):
+    text=''
+    if id>0:
+        text = "<b>Нет такого товара</b>"
     for t in items:
-        #text += str(t["id"]==id)
-         if t["id"]==id:
-             text = f'<b>name={t["name"]}, quantity={t["quantity"]}</b>'
+            t1=f'<b>name={t["name"]}, quantity={t["quantity"]}</b>'
+            if t["id"]==id:
+                text = f'<b>name={t["name"]}, quantity={t["quantity"]}</b>'
+            if id==0:
+                text = text+' <p>'+t1+'</p> '
+    
   
     return HttpResponse(text)
 
