@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render
+from MainApp.models import Item
 
 # Create your views here.
 def home(request):
@@ -44,7 +45,8 @@ def about(request):
 
 def get_item(request,item_id:int):
     # """По указанному ID вернуть имя и количество"""
-    item = next((item for item in ITEMS if item['id']==item_id),None)
+    items = Item.objects.all()
+    item = next((item for item in items if item.id==item_id),None)
     if item is not None:
         context = {"item":item}
         return render(request,'item.html',context)
@@ -57,7 +59,8 @@ def get_items(request):
     #     text += f"""<li> <a href="/item/{item['id']}">{item['name']}</a></li>"""
     # text+='</ol>'
     # return HttpResponse(text)
-    context={"goods":ITEMS}
+    items = Item.objects.all()
+    context={"goods":items}
     return render(request,'items.html',context)
 
 

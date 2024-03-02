@@ -11,12 +11,13 @@
         <a href="/../items">Cписок товаров /</a>
         <a href="/../about">About</a>
     </header>
-     {% if item.quantity == 0 %}
+     {% if item.count == 0 %}
             <h1>Товар {{item.name}} отсутствует</h1>  
         {%else%}  
     
            <h1>Товар: {{item.name}}</h1>
-           <p>Количество {{item.quantity}}</p>
+           <p>Бренд {{item.brand}}</p>
+           <p>Количество {{item.count}}</p>
        
         {% endif %}  
     
