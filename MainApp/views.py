@@ -33,6 +33,10 @@ def about(request):
               <p>Телефон:<strong>{author["телефон"]} </strong></p>
               <p>e-mail:<strong>{author["email"]} </strong></p>
           
+    
+    <a href="/">Домой </a><br>
+    <a href="/items">К списку товаров</a>
+    <a href="/about">About</a>
     """
     return HttpResponse(text)
 
@@ -41,13 +45,6 @@ def get_item(request,item_id:int):
     context = {"goods":ITEMS,
                 "id":item_id}
     return render(request,'item.html',context)
-
-    #         text = f"""<p><b>name={t["name"]}, quantity={t["quantity"]}</b></p>
-    #                   <p><a href ="/items"> Назад к списку товаров</a></p>"""
-
-    #         return HttpResponse(text)
-    # return HttpResponseNotFound(f'Item {item_id} not fount')
-
 
 
 def get_items(request):
