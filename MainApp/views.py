@@ -11,23 +11,16 @@ def home(request):
               "email":"mymail@mail.ru",}
     return render(request,'index.html',context)
 
-author = {
+
+
+def about(request):
+    author = {
       "Имя":" Иван",
         "Отчество": "Петрович",
         "Фамилия": "Иванов",
          "телефон": "8-923-600-01-02",
          "email": "vasya@mail.ru"}
-
-ITEMS = [
-      {"id": 1, "name": "Кроссовки abibas" ,"quantity":5},
-      {"id": 2, "name": "Куртка кожаная" ,"quantity":2},
-      {"id": 5, "name": "Coca-cola 1 литр" ,"quantity":12},
-      {"id": 7, "name": "Картофель фри" ,"quantity":0},
-      {"id": 8, "name": "Кепка" ,"quantity":124}
-     ]
-
-def about(request):
-
+    
     text=f"""
     <header>
         <a href="/"> Домой / <a>
@@ -45,7 +38,6 @@ def about(request):
 
 def get_item(request,item_id:int):
     # """По указанному ID вернуть имя и количество"""
-    items = Item.objects.all()
     item = Item.objects.get(id = item_id )# next((item for item in items if item.id==item_id),None)
     if item is not None:
         context = {"item":item}
@@ -60,7 +52,7 @@ def get_items(request):
     # text+='</ol>'
     # return HttpResponse(text)
     items = Item.objects.all()
-    context={"goods":items}
+    context={"items":items}
     return render(request,'items.html',context)
 
 
