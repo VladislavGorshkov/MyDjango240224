@@ -1,28 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Информация о товаре</title>
-</head>
-<body>
-    <header>
-        <a href="/../">Домой / </a>
-        <a href="/../items">Cписок товаров /</a>
-        <a href="/../about">About</a>
-    </header>
-     {% if item.count == 0 %}
-            <h1>Товар {{item.name}} отсутствует</h1>  
-        {%else%}  
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
     
            <h1>Товар: {{item.name}}</h1>
            <p>Бренд {{item.brand}}</p>
-           <p>Количество {{item.count}}</p>
+           <p>Количество {{item.count | default:"Товара нет на складе"}}</p>
            <p>Описание товара:</p> 
-            <p>{{item.info}} </p>
-       
-        {% endif %}  
-    
-
-    </body>
-</html>
+           <p>{{item.info}} </p>
+{% endblock %}

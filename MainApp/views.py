@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render
 from MainApp.models import Item
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def home(request):
@@ -38,11 +39,14 @@ def about(request):
 
 def get_item(request,item_id:int):
     # """По указанному ID вернуть имя и количество"""
-    item = Item.objects.get(id = item_id )# next((item for item in items if item.id==item_id),None)
-    if item is not None:
+    try:
+       item = Item.objects.get(id = item_id )# next((item for item in items if item.id==item_id),None)
+    except ObjectDoesNotExist:
+        return HttpResponseNotFound(f'Товар itemid={item_id} не найден')
+    else:
         context = {"item":item}
         return render(request,'item.html',context)
-    return HttpResponseNotFound(f'Товар itemid={item_id} не найден')
+    
 
 def get_items(request):
     # """Возвращаем список товаров"""
